@@ -19,6 +19,10 @@
             :K (->rank "King" 10)})
 (def suits ["Hearts" "Diamonds" "Spades" "Clubs"])
 
-(defn deck []
-  (for [suit suits rank ranks]
-         (->card suit rank false)))
+(def new-deck
+  (shuffle (for [suit suits rank ranks]
+         (->card suit rank false))))
+
+(defn draw-card [current-deck]
+  (let [drawn-card (rand-nth current-deck)]
+    (list drawn-card (remove #{drawn-card} current-deck))))
