@@ -23,6 +23,5 @@
   (shuffle (for [suit suits rank ranks]
          (->card suit rank false))))
 
-(defn draw-card [current-deck]
-  (let [drawn-card (rand-nth current-deck)]
-    (list drawn-card (remove #{drawn-card} current-deck))))
+(defn draw-card [current-deck showing?]
+  (list (assoc-in (first current-deck) [:showing?] showing?) (rest current-deck)))
